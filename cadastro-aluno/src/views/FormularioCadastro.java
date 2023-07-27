@@ -23,10 +23,8 @@ public class FormularioCadastro extends JFrame {
     String cpf = inputCpf.getText();
     String matricula = inputMatricula.getText();
     String escolaridade = btnGroupEscolaridade.getSelection().getActionCommand();
-    
+
     alunos.add(new Aluno(nome, cpf, escolaridade, matricula));
-    listaAlunos();
-    limpaCampos();
   }
   
   private void listaAlunos() {
@@ -153,36 +151,35 @@ public class FormularioCadastro extends JFrame {
     bodyLayout.setHorizontalGroup(
       bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(bodyLayout.createSequentialGroup()
+        .addGap(0, 22, Short.MAX_VALUE)
         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(bodyLayout.createSequentialGroup()
-            .addGap(16, 16, 16)
-            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(labelEscolaridade)
-              .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(bodyLayout.createSequentialGroup()
-                  .addComponent(radioFundamental)
-                  .addGap(35, 35, 35)
-                  .addComponent(radioMedio)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(radioSuperior))
-                .addGroup(bodyLayout.createSequentialGroup()
-                  .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelNome)
-                    .addComponent(labelCpf)
-                    .addComponent(labelMatricula))
-                  .addGap(18, 18, 18)
-                  .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(labelEscolaridade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(labelNome, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+              .addComponent(labelCpf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(labelMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addComponent(inputNome)
+              .addComponent(inputCpf)
+              .addComponent(inputMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
           .addGroup(bodyLayout.createSequentialGroup()
-            .addGap(10, 10, 10)
-            .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(radioFundamental))
+            .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(radioMedio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(radioSuperior))
+              .addGroup(bodyLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        .addGap(25, 25, 25))
     );
     bodyLayout.setVerticalGroup(
       bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,11 +244,9 @@ public class FormularioCadastro extends JFrame {
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(body, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(tableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(tableScrollPane))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -272,16 +267,35 @@ public class FormularioCadastro extends JFrame {
   }//GEN-LAST:event_radioFundamentalActionPerformed
 
   private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
+    int res;
+    String[] options = { "Sim", "Não" };
+
+    res = JOptionPane.showOptionDialog(body,
+      "Tem certeza que deseja limpar todos os campos do formulário?\nVocê não pode desfazer esta ação!", "Formulário - Limpar campos",
+      JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+
+    if (res != 0) return;
+    
     limpaCampos();
   }//GEN-LAST:event_btnLimparMouseClicked
 
   private void btnAdicionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAdicionarMouseClicked
-    cadastra();
+    try {
+      cadastra();
+      listaAlunos();
+      limpaCampos();
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(this, e.getMessage(), "Erro ao cadastrar aluno", JOptionPane.ERROR_MESSAGE);
+    } 
   }//GEN-LAST:event_btnAdicionarMouseClicked
 
   private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
     String lista = "Nome - Matrícula:\n";
-    for (Aluno a : alunos) lista += String.format("%s - %s\n", a.getNome(), a.getMatricula());
+    
+    for (Aluno a : alunos) {
+      lista += String.format("%s - %s\n", a.getNome(), a.getMatricula());
+    }
+    
     
     JOptionPane.showMessageDialog(this, lista, "Lista de alunos", JOptionPane.PLAIN_MESSAGE);
   }//GEN-LAST:event_btnImprimirMouseClicked
