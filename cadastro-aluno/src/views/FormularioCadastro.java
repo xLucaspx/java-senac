@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import models.Aluno;
 
 public class FormularioCadastro extends JFrame {
@@ -16,6 +17,18 @@ public class FormularioCadastro extends JFrame {
     initComponents();
     alunos = new ArrayList<>();
     modelTabelaAlunos = (DefaultTableModel) tableAlunos.getModel();
+    
+    TableColumn colunaIndice = tableAlunos.getColumnModel().getColumn(0);
+    TableColumn colunaNome = tableAlunos.getColumnModel().getColumn(1);
+    TableColumn colunaCpf = tableAlunos.getColumnModel().getColumn(2);
+    TableColumn colunaMatricula = tableAlunos.getColumnModel().getColumn(3);
+    TableColumn colunaEscolaridade = tableAlunos.getColumnModel().getColumn(4);
+    
+    colunaIndice.setPreferredWidth(47);
+    colunaNome.setPreferredWidth(151);
+    colunaCpf.setPreferredWidth(110);
+    colunaMatricula.setPreferredWidth(90);
+    colunaEscolaridade.setPreferredWidth(151);
   }
   
   private void cadastra() {
@@ -32,15 +45,26 @@ public class FormularioCadastro extends JFrame {
     
     for (int i = 0; i < alunos.size(); i++) {
       Aluno a = alunos.get(i);
-      modelTabelaAlunos.addRow(new Object[]{(i+1), a.getNome(), a.getCpf(), a.getMatricula(), a.getEscolaridade()});
+      modelTabelaAlunos.addRow(new String[]{String.valueOf(i+1), a.getNome(), a.getCpf(), a.getMatricula(), a.getEscolaridade()});
     }
+  }
+  
+  private String listaAlunosToString() {
+    if (alunos.isEmpty()) return "Ainda não há alunos cadastrados!";
+    
+    String lista = String.format("%-25s | %20s:\n", "Nome", "Matrícula");
+    
+    for (Aluno a : alunos) lista += String.format("%-25s | %20s\n", a.getNome(), a.getMatricula());
+    
+    return lista;
   }
   
   private void limpaCampos() {
     inputNome.setText("");
     inputCpf.setText("");
     inputMatricula.setText("");
-    radioFundamental.setSelected(true);
+    radioSuperior.setSelected(true);
+    inputNome.requestFocusInWindow();
   }
 
   @SuppressWarnings("unchecked")
@@ -56,9 +80,9 @@ public class FormularioCadastro extends JFrame {
     labelMatricula = new javax.swing.JLabel();
     inputMatricula = new javax.swing.JTextField();
     labelEscolaridade = new javax.swing.JLabel();
-    radioFundamental = new javax.swing.JRadioButton();
-    radioMedio = new javax.swing.JRadioButton();
     radioSuperior = new javax.swing.JRadioButton();
+    radioMedio = new javax.swing.JRadioButton();
+    radioFundamental = new javax.swing.JRadioButton();
     btnAdicionar = new javax.swing.JButton();
     btnImprimir = new javax.swing.JButton();
     btnLimpar = new javax.swing.JButton();
@@ -92,15 +116,15 @@ public class FormularioCadastro extends JFrame {
     labelEscolaridade.setForeground(new java.awt.Color(40, 40, 40));
     labelEscolaridade.setText("Escolaridade:");
 
-    radioFundamental.setBackground(new java.awt.Color(200, 200, 200));
-    btnGroupEscolaridade.add(radioFundamental);
-    radioFundamental.setForeground(new java.awt.Color(40, 40, 40));
-    radioFundamental.setSelected(true);
-    radioFundamental.setText("Ensino fundamental");
-    radioFundamental.setActionCommand("Ensino fundamental");
-    radioFundamental.addActionListener(new java.awt.event.ActionListener() {
+    radioSuperior.setBackground(new java.awt.Color(200, 200, 200));
+    btnGroupEscolaridade.add(radioSuperior);
+    radioSuperior.setForeground(new java.awt.Color(40, 40, 40));
+    radioSuperior.setSelected(true);
+    radioSuperior.setText("Ensino superior");
+    radioSuperior.setActionCommand("Ensino superior");
+    radioSuperior.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        radioFundamentalActionPerformed(evt);
+        radioSuperiorActionPerformed(evt);
       }
     });
 
@@ -110,11 +134,16 @@ public class FormularioCadastro extends JFrame {
     radioMedio.setText("Ensino médio");
     radioMedio.setActionCommand("Ensino médio");
 
-    radioSuperior.setBackground(new java.awt.Color(200, 200, 200));
-    btnGroupEscolaridade.add(radioSuperior);
-    radioSuperior.setForeground(new java.awt.Color(40, 40, 40));
-    radioSuperior.setText("Ensino superior");
-    radioSuperior.setActionCommand("Ensino superior");
+    radioFundamental.setBackground(new java.awt.Color(200, 200, 200));
+    btnGroupEscolaridade.add(radioFundamental);
+    radioFundamental.setForeground(new java.awt.Color(40, 40, 40));
+    radioFundamental.setText("Ensino fundamental");
+    radioFundamental.setActionCommand("Ensino fundamental");
+    radioFundamental.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        radioFundamentalActionPerformed(evt);
+      }
+    });
 
     btnAdicionar.setBackground(new java.awt.Color(20, 230, 120));
     btnAdicionar.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,15 +196,15 @@ public class FormularioCadastro extends JFrame {
           .addGroup(bodyLayout.createSequentialGroup()
             .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(radioFundamental))
+              .addComponent(radioSuperior))
+            .addGap(49, 49, 49)
             .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(0, 12, Short.MAX_VALUE)
                 .addComponent(radioMedio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(radioSuperior))
+                .addGap(82, 82, 82)
+                .addComponent(radioFundamental))
               .addGroup(bodyLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -200,9 +229,9 @@ public class FormularioCadastro extends JFrame {
         .addComponent(labelEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(radioFundamental)
+          .addComponent(radioSuperior)
           .addComponent(radioMedio)
-          .addComponent(radioSuperior))
+          .addComponent(radioFundamental))
         .addGap(18, 18, 18)
         .addGroup(bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,9 +291,9 @@ public class FormularioCadastro extends JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void radioFundamentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFundamentalActionPerformed
+  private void radioSuperiorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSuperiorActionPerformed
     // TODO add your handling code here:
-  }//GEN-LAST:event_radioFundamentalActionPerformed
+  }//GEN-LAST:event_radioSuperiorActionPerformed
 
   private void btnLimparMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparMouseClicked
     int res;
@@ -272,7 +301,7 @@ public class FormularioCadastro extends JFrame {
 
     res = JOptionPane.showOptionDialog(body,
       "Tem certeza que deseja limpar todos os campos do formulário?\nVocê não pode desfazer esta ação!", "Formulário - Limpar campos",
-      JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+      JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
     if (res != 0) return;
     
@@ -290,15 +319,12 @@ public class FormularioCadastro extends JFrame {
   }//GEN-LAST:event_btnAdicionarMouseClicked
 
   private void btnImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirMouseClicked
-    String lista = "Nome - Matrícula:\n";
-    
-    for (Aluno a : alunos) {
-      lista += String.format("%s - %s\n", a.getNome(), a.getMatricula());
-    }
-    
-    
-    JOptionPane.showMessageDialog(this, lista, "Lista de alunos", JOptionPane.PLAIN_MESSAGE);
+    JOptionPane.showMessageDialog(this, listaAlunosToString(), "Lista de alunos", JOptionPane.PLAIN_MESSAGE);
   }//GEN-LAST:event_btnImprimirMouseClicked
+
+  private void radioFundamentalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFundamentalActionPerformed
+    // TODO add your handling code here:
+  }//GEN-LAST:event_radioFundamentalActionPerformed
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables

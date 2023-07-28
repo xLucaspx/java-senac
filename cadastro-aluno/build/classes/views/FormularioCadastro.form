@@ -86,17 +86,17 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnAdicionar" min="-2" pref="135" max="-2" attributes="0"/>
-                              <Component id="radioFundamental" min="-2" max="-2" attributes="0"/>
+                              <Component id="radioSuperior" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Component id="radioMedio" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="radioSuperior" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                                  <Component id="radioMedio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                                  <Component id="radioFundamental" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Component id="btnImprimir" min="-2" pref="135" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnLimpar" min="-2" pref="135" max="-2" attributes="0"/>
@@ -130,9 +130,9 @@
                   <Component id="labelEscolaridade" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="radioFundamental" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="radioMedio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="radioSuperior" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioMedio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioFundamental" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -208,7 +208,7 @@
             <Property name="text" type="java.lang.String" value="Escolaridade:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="radioFundamental">
+        <Component class="javax.swing.JRadioButton" name="radioSuperior">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c8" green="c8" red="c8" type="rgb"/>
@@ -220,13 +220,13 @@
               <Color blue="28" green="28" red="28" type="rgb"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Ensino fundamental"/>
+            <Property name="text" type="java.lang.String" value="Ensino superior"/>
             <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Ensino fundamental&quot;" type="code"/>
+              <Connection code="&quot;Ensino superior&quot;" type="code"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioFundamentalActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioSuperiorActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioMedio">
@@ -246,7 +246,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="radioSuperior">
+        <Component class="javax.swing.JRadioButton" name="radioFundamental">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="c8" green="c8" red="c8" type="rgb"/>
@@ -257,11 +257,14 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="28" green="28" red="28" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ensino superior"/>
+            <Property name="text" type="java.lang.String" value="Ensino fundamental"/>
             <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;Ensino superior&quot;" type="code"/>
+              <Connection code="&quot;Ensino fundamental&quot;" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioFundamentalActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAdicionar">
           <Properties>
